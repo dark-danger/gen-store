@@ -236,8 +236,8 @@ export default function Home() {
                     </div>
                     <div className="stats">
                         <div className="stat-item glass-panel"><span className="stat-number">50+</span><span className="stat-label">Sensors</span></div>
-                        <div className="stat-item glass-panel"><span className="stat-number">20+</span><span className="stat-label">Actuators</span></div>
-                        <div className="stat-item glass-panel"><span className="stat-number">20+</span><span className="stat-label">Projects</span></div>
+                        <div className="stat-item glass-panel"><span className="stat-number">50+</span><span className="stat-label">Circuits</span></div>
+                        <div className="stat-item glass-panel"><span className="stat-number">40+</span><span className="stat-label">Actuators/Modules</span></div>
                     </div>
                 </div>
                 <div className="hero-image-wrapper">
