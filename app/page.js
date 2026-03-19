@@ -80,8 +80,10 @@ export default function Home() {
                     <div className="logo">Gen<span>Store</span></div>
                     <ul className="nav-links">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#shop" className={category !== 'All' ? 'active' : ''}>Store</a></li>
-                        <li><a href="#about">About</a></li>
+                        <li><a href="#shop" onClick={() => setCategory('Sensors')} className={category === 'Sensors' ? 'active' : ''}>Sensors</a></li>
+                        <li><a href="#shop" onClick={() => setCategory('Modules')} className={category === 'Modules' ? 'active' : ''}>Modules</a></li>
+                        <li><a href="#shop" onClick={() => setCategory('Projects')} className={category === 'Projects' ? 'active' : ''}>Projects</a></li>
+                        <li><a href="#shop" onClick={() => setCategory('Circuits')} className={category === 'Circuits' ? 'active' : ''}>Circuits</a></li>
                     </ul>
                     <div className="nav-actions">
                         <a href="http://thegenbots.in" target="_blank" rel="noopener noreferrer" className="btn-nav-genbots">
