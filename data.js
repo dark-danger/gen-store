@@ -1,772 +1,882 @@
 export const products = [
     {
-        "id": "p_1",
-        "name": "Flame Sensor Lite",
-        "category": "Sensors",
-        "price": "3.89",
-        "image": "sensor"
-    },
-    {
-        "id": "p_2",
-        "name": "Humidity Sensor Max",
-        "category": "Sensors",
-        "price": "3.40",
-        "image": "sensor"
-    },
-    {
-        "id": "p_3",
+        "id": "sen_1",
         "name": "Gas Sensor v2",
         "category": "Sensors",
-        "price": "16.53",
-        "image": "sensor"
+        "price": 740,
+        "image": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80",
+        "details": "High precision gas sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_4",
-        "name": "Water Level Sensor Mini",
+        "id": "sen_2",
+        "name": "Color Sensor v2",
         "category": "Sensors",
-        "price": "8.64",
-        "image": "sensor"
+        "price": 560,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision color sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_5",
-        "name": "Temperature Sensor v1",
-        "category": "Sensors",
-        "price": "10.57",
-        "image": "sensor"
-    },
-    {
-        "id": "p_6",
-        "name": "Soil Moisture Sensor Pro",
-        "category": "Sensors",
-        "price": "3.49",
-        "image": "sensor"
-    },
-    {
-        "id": "p_7",
-        "name": "Accelerometer Sensor Mini",
-        "category": "Sensors",
-        "price": "13.54",
-        "image": "sensor"
-    },
-    {
-        "id": "p_8",
+        "id": "sen_3",
         "name": "Touch Sensor Max",
         "category": "Sensors",
-        "price": "8.71",
-        "image": "sensor"
+        "price": 676,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision touch sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_9",
-        "name": "Humidity Sensor Pro",
+        "id": "sen_4",
+        "name": "Touch Sensor v1",
         "category": "Sensors",
-        "price": "11.86",
-        "image": "sensor"
+        "price": 720,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision touch sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_10",
-        "name": "Humidity Sensor Max",
-        "category": "Sensors",
-        "price": "13.72",
-        "image": "sensor"
-    },
-    {
-        "id": "p_11",
-        "name": "Infrared Sensor v2",
-        "category": "Sensors",
-        "price": "3.59",
-        "image": "sensor"
-    },
-    {
-        "id": "p_12",
-        "name": "Flex Sensor Mini",
-        "category": "Sensors",
-        "price": "9.26",
-        "image": "sensor"
-    },
-    {
-        "id": "p_13",
-        "name": "Pressure Sensor v1",
-        "category": "Sensors",
-        "price": "2.05",
-        "image": "sensor"
-    },
-    {
-        "id": "p_14",
-        "name": "Temperature Sensor Max",
-        "category": "Sensors",
-        "price": "12.66",
-        "image": "sensor"
-    },
-    {
-        "id": "p_15",
-        "name": "Gyroscope Sensor Max",
-        "category": "Sensors",
-        "price": "13.54",
-        "image": "sensor"
-    },
-    {
-        "id": "p_16",
-        "name": "Humidity Sensor v1",
-        "category": "Sensors",
-        "price": "4.72",
-        "image": "sensor"
-    },
-    {
-        "id": "p_17",
-        "name": "Motion Sensor v2",
-        "category": "Sensors",
-        "price": "2.59",
-        "image": "sensor"
-    },
-    {
-        "id": "p_18",
-        "name": "Infrared Sensor Pro",
-        "category": "Sensors",
-        "price": "3.08",
-        "image": "sensor"
-    },
-    {
-        "id": "p_19",
-        "name": "Magnetic Sensor Max",
-        "category": "Sensors",
-        "price": "4.42",
-        "image": "sensor"
-    },
-    {
-        "id": "p_20",
-        "name": "Magnetic Sensor Mini",
-        "category": "Sensors",
-        "price": "14.18",
-        "image": "sensor"
-    },
-    {
-        "id": "p_21",
-        "name": "Heart Rate Sensor v1",
-        "category": "Sensors",
-        "price": "16.02",
-        "image": "sensor"
-    },
-    {
-        "id": "p_22",
-        "name": "Temperature Sensor Lite",
-        "category": "Sensors",
-        "price": "11.72",
-        "image": "sensor"
-    },
-    {
-        "id": "p_23",
-        "name": "Water Level Sensor Pro",
-        "category": "Sensors",
-        "price": "4.56",
-        "image": "sensor"
-    },
-    {
-        "id": "p_24",
-        "name": "Light Sensor Max",
-        "category": "Sensors",
-        "price": "7.03",
-        "image": "sensor"
-    },
-    {
-        "id": "p_25",
-        "name": "Pressure Sensor Lite",
-        "category": "Sensors",
-        "price": "5.71",
-        "image": "sensor"
-    },
-    {
-        "id": "p_26",
-        "name": "Ultrasonic Sensor Pro",
-        "category": "Sensors",
-        "price": "7.76",
-        "image": "sensor"
-    },
-    {
-        "id": "p_27",
-        "name": "Pressure Sensor v2",
-        "category": "Sensors",
-        "price": "16.93",
-        "image": "sensor"
-    },
-    {
-        "id": "p_28",
-        "name": "Soil Moisture Sensor v1",
-        "category": "Sensors",
-        "price": "9.94",
-        "image": "sensor"
-    },
-    {
-        "id": "p_29",
-        "name": "Flame Sensor Mini",
-        "category": "Sensors",
-        "price": "7.30",
-        "image": "sensor"
-    },
-    {
-        "id": "p_30",
-        "name": "Light Sensor Mini",
-        "category": "Sensors",
-        "price": "16.36",
-        "image": "sensor"
-    },
-    {
-        "id": "p_31",
-        "name": "Touch Sensor Pro",
-        "category": "Sensors",
-        "price": "3.49",
-        "image": "sensor"
-    },
-    {
-        "id": "p_32",
-        "name": "Vibration Sensor v2",
-        "category": "Sensors",
-        "price": "5.32",
-        "image": "sensor"
-    },
-    {
-        "id": "p_33",
-        "name": "Flame Sensor Max",
-        "category": "Sensors",
-        "price": "14.16",
-        "image": "sensor"
-    },
-    {
-        "id": "p_34",
-        "name": "Color Sensor Max",
-        "category": "Sensors",
-        "price": "8.00",
-        "image": "sensor"
-    },
-    {
-        "id": "p_35",
-        "name": "Color Sensor v2",
-        "category": "Sensors",
-        "price": "8.04",
-        "image": "sensor"
-    },
-    {
-        "id": "p_36",
-        "name": "Magnetic Sensor Pro",
-        "category": "Sensors",
-        "price": "4.07",
-        "image": "sensor"
-    },
-    {
-        "id": "p_37",
+        "id": "sen_5",
         "name": "Gyroscope Sensor v1",
         "category": "Sensors",
-        "price": "5.91",
-        "image": "sensor"
+        "price": 542,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision gyroscope sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_38",
-        "name": "Magnetic Sensor Mini",
+        "id": "sen_6",
+        "name": "Heart Rate Sensor Max",
         "category": "Sensors",
-        "price": "15.29",
-        "image": "sensor"
+        "price": 794,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision heart rate sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_39",
-        "name": "Infrared Sensor v1",
+        "id": "sen_7",
+        "name": "Ultrasonic Sensor v1",
         "category": "Sensors",
-        "price": "5.07",
-        "image": "sensor"
+        "price": 193,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision ultrasonic sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_40",
-        "name": "Infrared Sensor Max",
+        "id": "sen_8",
+        "name": "Color Sensor Mini",
         "category": "Sensors",
-        "price": "11.79",
-        "image": "sensor"
+        "price": 264,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision color sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_41",
-        "name": "Soil Moisture Sensor v2",
+        "id": "sen_9",
+        "name": "Soil Moisture Sensor v1",
         "category": "Sensors",
-        "price": "7.97",
-        "image": "sensor"
+        "price": 702,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision soil moisture sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_42",
+        "id": "sen_10",
+        "name": "Temperature Sensor v2",
+        "category": "Sensors",
+        "price": 532,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision temperature sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_11",
+        "name": "Accelerometer Sensor v2",
+        "category": "Sensors",
+        "price": 474,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision accelerometer sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_12",
+        "name": "Vibration Sensor Mini",
+        "category": "Sensors",
+        "price": 834,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision vibration sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_13",
         "name": "Water Level Sensor v1",
         "category": "Sensors",
-        "price": "8.52",
-        "image": "sensor"
+        "price": 421,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision water level sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_43",
-        "name": "Touch Sensor Mini",
+        "id": "sen_14",
+        "name": "Gyroscope Sensor v2",
         "category": "Sensors",
-        "price": "14.42",
-        "image": "sensor"
+        "price": 123,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision gyroscope sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_44",
-        "name": "Water Level Sensor Mini",
+        "id": "sen_15",
+        "name": "Magnetic Sensor v2",
         "category": "Sensors",
-        "price": "12.65",
-        "image": "sensor"
+        "price": 255,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision magnetic sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_45",
-        "name": "Accelerometer Sensor Pro",
+        "id": "sen_16",
+        "name": "Vibration Sensor Mini",
         "category": "Sensors",
-        "price": "2.33",
-        "image": "sensor"
+        "price": 556,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision vibration sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_46",
-        "name": "Heart Rate Sensor Pro",
+        "id": "sen_17",
+        "name": "Flame Sensor Mini",
         "category": "Sensors",
-        "price": "15.30",
-        "image": "sensor"
+        "price": 176,
+        "image": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80",
+        "details": "High precision flame sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_47",
-        "name": "Heart Rate Sensor v2",
+        "id": "sen_18",
+        "name": "Flex Sensor v1",
         "category": "Sensors",
-        "price": "7.25",
-        "image": "sensor"
+        "price": 899,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision flex sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_48",
-        "name": "Accelerometer Sensor v1",
+        "id": "sen_19",
+        "name": "Water Level Sensor Max",
         "category": "Sensors",
-        "price": "8.90",
-        "image": "sensor"
+        "price": 857,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision water level sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_49",
-        "name": "Touch Sensor Mini",
+        "id": "sen_20",
+        "name": "Water Level Sensor Lite",
         "category": "Sensors",
-        "price": "11.67",
-        "image": "sensor"
+        "price": 621,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision water level sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_50",
+        "id": "sen_21",
+        "name": "Gyroscope Sensor Pro",
+        "category": "Sensors",
+        "price": 544,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision gyroscope sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_22",
+        "name": "Flex Sensor Lite",
+        "category": "Sensors",
+        "price": 832,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision flex sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_23",
+        "name": "Temperature Sensor Lite",
+        "category": "Sensors",
+        "price": 692,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision temperature sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_24",
+        "name": "Pressure Sensor Max",
+        "category": "Sensors",
+        "price": 445,
+        "image": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80",
+        "details": "High precision pressure sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_25",
         "name": "Color Sensor v2",
         "category": "Sensors",
-        "price": "6.12",
-        "image": "sensor"
+        "price": 831,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision color sensor module perfect for your next IoT build."
     },
     {
-        "id": "p_51",
-        "name": "Relay Breakout",
+        "id": "sen_26",
+        "name": "Water Level Sensor v2",
+        "category": "Sensors",
+        "price": 213,
+        "image": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80",
+        "details": "High precision water level sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_27",
+        "name": "Humidity Sensor Mini",
+        "category": "Sensors",
+        "price": 146,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision humidity sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_28",
+        "name": "Flame Sensor Mini",
+        "category": "Sensors",
+        "price": 334,
+        "image": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80",
+        "details": "High precision flame sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_29",
+        "name": "Vibration Sensor Max",
+        "category": "Sensors",
+        "price": 800,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision vibration sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_30",
+        "name": "Sound Sensor v2",
+        "category": "Sensors",
+        "price": 254,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision sound sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_31",
+        "name": "Light Sensor v2",
+        "category": "Sensors",
+        "price": 417,
+        "image": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80",
+        "details": "High precision light sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_32",
+        "name": "Humidity Sensor v1",
+        "category": "Sensors",
+        "price": 863,
+        "image": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80",
+        "details": "High precision humidity sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_33",
+        "name": "Humidity Sensor Lite",
+        "category": "Sensors",
+        "price": 645,
+        "image": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80",
+        "details": "High precision humidity sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_34",
+        "name": "Pressure Sensor Pro",
+        "category": "Sensors",
+        "price": 564,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision pressure sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_35",
+        "name": "Magnetic Sensor v2",
+        "category": "Sensors",
+        "price": 566,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision magnetic sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_36",
+        "name": "Water Level Sensor Max",
+        "category": "Sensors",
+        "price": 399,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision water level sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_37",
+        "name": "Heart Rate Sensor v2",
+        "category": "Sensors",
+        "price": 384,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision heart rate sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_38",
+        "name": "Magnetic Sensor Max",
+        "category": "Sensors",
+        "price": 823,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision magnetic sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_39",
+        "name": "Touch Sensor v2",
+        "category": "Sensors",
+        "price": 484,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision touch sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_40",
+        "name": "Gyroscope Sensor Pro",
+        "category": "Sensors",
+        "price": 300,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision gyroscope sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_41",
+        "name": "Flame Sensor Pro",
+        "category": "Sensors",
+        "price": 598,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision flame sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_42",
+        "name": "Touch Sensor v2",
+        "category": "Sensors",
+        "price": 463,
+        "image": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80",
+        "details": "High precision touch sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_43",
+        "name": "Soil Moisture Sensor Max",
+        "category": "Sensors",
+        "price": 273,
+        "image": "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?w=500&q=80",
+        "details": "High precision soil moisture sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_44",
+        "name": "Water Level Sensor Pro",
+        "category": "Sensors",
+        "price": 464,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision water level sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_45",
+        "name": "Soil Moisture Sensor Lite",
+        "category": "Sensors",
+        "price": 752,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision soil moisture sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_46",
+        "name": "Accelerometer Sensor Lite",
+        "category": "Sensors",
+        "price": 403,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision accelerometer sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_47",
+        "name": "Color Sensor Mini",
+        "category": "Sensors",
+        "price": 812,
+        "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80",
+        "details": "High precision color sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_48",
+        "name": "Accelerometer Sensor Lite",
+        "category": "Sensors",
+        "price": 463,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision accelerometer sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_49",
+        "name": "Light Sensor Pro",
+        "category": "Sensors",
+        "price": 729,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision light sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "sen_50",
+        "name": "Color Sensor Mini",
+        "category": "Sensors",
+        "price": 659,
+        "image": "https://images.unsplash.com/photo-1620283085439-39620a1e21c4?w=500&q=80",
+        "details": "High precision color sensor module perfect for your next IoT build."
+    },
+    {
+        "id": "mod_51",
+        "name": "OLED Display Shield",
         "category": "Modules",
-        "price": "18.16",
-        "image": "module"
+        "price": 1396,
+        "image": "https://images.unsplash.com/photo-1563207153-f40c5b525d80?w=500&q=80",
+        "details": "Robust and reliable OLED Display Shield for rapid prototyping and deployment."
     },
     {
-        "id": "p_52",
-        "name": "Arduino Nano Core",
-        "category": "Modules",
-        "price": "24.61",
-        "image": "module"
-    },
-    {
-        "id": "p_53",
-        "name": "Relay Module",
-        "category": "Modules",
-        "price": "23.61",
-        "image": "module"
-    },
-    {
-        "id": "p_54",
-        "name": "Motor Driver Core",
-        "category": "Modules",
-        "price": "10.57",
-        "image": "module"
-    },
-    {
-        "id": "p_55",
-        "name": "Battery Charger Core",
-        "category": "Modules",
-        "price": "25.26",
-        "image": "module"
-    },
-    {
-        "id": "p_56",
+        "id": "mod_52",
         "name": "RTC Breakout",
         "category": "Modules",
-        "price": "7.16",
-        "image": "module"
+        "price": 1154,
+        "image": "https://images.unsplash.com/photo-1563207153-f40c5b525d80?w=500&q=80",
+        "details": "Robust and reliable RTC Breakout for rapid prototyping and deployment."
     },
     {
-        "id": "p_57",
+        "id": "mod_53",
+        "name": "Arduino Nano Module",
+        "category": "Modules",
+        "price": 429,
+        "image": "https://images.unsplash.com/photo-1553406830-ef2513450d76?w=500&q=80",
+        "details": "Robust and reliable Arduino Nano Module for rapid prototyping and deployment."
+    },
+    {
+        "id": "mod_54",
+        "name": "RTC Breakout",
+        "category": "Modules",
+        "price": 691,
+        "image": "https://images.unsplash.com/photo-1553406830-ef2513450d76?w=500&q=80",
+        "details": "Robust and reliable RTC Breakout for rapid prototyping and deployment."
+    },
+    {
+        "id": "mod_55",
         "name": "RFID Breakout",
         "category": "Modules",
-        "price": "26.60",
-        "image": "module"
+        "price": 477,
+        "image": "https://images.unsplash.com/photo-1563207153-f40c5b525d80?w=500&q=80",
+        "details": "Robust and reliable RFID Breakout for rapid prototyping and deployment."
     },
     {
-        "id": "p_58",
-        "name": "LCD Display Core",
+        "id": "mod_56",
+        "name": "NFC Core",
         "category": "Modules",
-        "price": "29.87",
-        "image": "module"
+        "price": 1594,
+        "image": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500&q=80",
+        "details": "Robust and reliable NFC Core for rapid prototyping and deployment."
     },
     {
-        "id": "p_59",
-        "name": "Arduino Nano Core",
+        "id": "mod_57",
+        "name": "Battery Charger Shield",
         "category": "Modules",
-        "price": "9.89",
-        "image": "module"
+        "price": 591,
+        "image": "https://images.unsplash.com/photo-1553406830-ef2513450d76?w=500&q=80",
+        "details": "Robust and reliable Battery Charger Shield for rapid prototyping and deployment."
     },
     {
-        "id": "p_60",
-        "name": "LCD Display Breakout",
+        "id": "mod_58",
+        "name": "GPS Core",
         "category": "Modules",
-        "price": "28.64",
-        "image": "module"
+        "price": 863,
+        "image": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500&q=80",
+        "details": "Robust and reliable GPS Core for rapid prototyping and deployment."
     },
     {
-        "id": "p_61",
-        "name": "SD Card Module",
+        "id": "mod_59",
+        "name": "Bluetooth Core",
         "category": "Modules",
-        "price": "25.81",
-        "image": "module"
+        "price": 688,
+        "image": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500&q=80",
+        "details": "Robust and reliable Bluetooth Core for rapid prototyping and deployment."
     },
     {
-        "id": "p_62",
-        "name": "LoRa Core",
+        "id": "mod_60",
+        "name": "Power Supply Core",
         "category": "Modules",
-        "price": "23.85",
-        "image": "module"
+        "price": 1209,
+        "image": "https://images.unsplash.com/photo-1563207153-f40c5b525d80?w=500&q=80",
+        "details": "Robust and reliable Power Supply Core for rapid prototyping and deployment."
     },
     {
-        "id": "p_63",
-        "name": "GSM Core",
+        "id": "mod_61",
+        "name": "SD Card Core",
         "category": "Modules",
-        "price": "14.86",
-        "image": "module"
+        "price": 1335,
+        "image": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500&q=80",
+        "details": "Robust and reliable SD Card Core for rapid prototyping and deployment."
     },
     {
-        "id": "p_64",
-        "name": "Step-up Converter Module",
+        "id": "mod_62",
+        "name": "ESP32 Breakout",
         "category": "Modules",
-        "price": "24.45",
-        "image": "module"
+        "price": 1485,
+        "image": "https://images.unsplash.com/photo-1553406830-ef2513450d76?w=500&q=80",
+        "details": "Robust and reliable ESP32 Breakout for rapid prototyping and deployment."
     },
     {
-        "id": "p_65",
-        "name": "Motor Driver Shield",
+        "id": "mod_63",
+        "name": "GSM Module",
         "category": "Modules",
-        "price": "13.48",
-        "image": "module"
+        "price": 635,
+        "image": "https://images.unsplash.com/photo-1553406830-ef2513450d76?w=500&q=80",
+        "details": "Robust and reliable GSM Module for rapid prototyping and deployment."
     },
     {
-        "id": "p_66",
-        "name": "WiFi Breakout",
+        "id": "mod_64",
+        "name": "SD Card Core",
         "category": "Modules",
-        "price": "9.14",
-        "image": "module"
+        "price": 1020,
+        "image": "https://images.unsplash.com/photo-1563207153-f40c5b525d80?w=500&q=80",
+        "details": "Robust and reliable SD Card Core for rapid prototyping and deployment."
     },
     {
-        "id": "p_67",
-        "name": "Power Supply Shield",
+        "id": "mod_65",
+        "name": "Raspberry Pi Pico Core",
         "category": "Modules",
-        "price": "13.49",
-        "image": "module"
+        "price": 1294,
+        "image": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500&q=80",
+        "details": "Robust and reliable Raspberry Pi Pico Core for rapid prototyping and deployment."
     },
     {
-        "id": "p_68",
-        "name": "Motor Driver Module",
+        "id": "mod_66",
+        "name": "Raspberry Pi Pico Module",
         "category": "Modules",
-        "price": "7.75",
-        "image": "module"
+        "price": 1251,
+        "image": "https://images.unsplash.com/photo-1553406830-ef2513450d76?w=500&q=80",
+        "details": "Robust and reliable Raspberry Pi Pico Module for rapid prototyping and deployment."
     },
     {
-        "id": "p_69",
-        "name": "Matrix LED Breakout",
+        "id": "mod_67",
+        "name": "WiFi Shield",
         "category": "Modules",
-        "price": "28.61",
-        "image": "module"
+        "price": 373,
+        "image": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500&q=80",
+        "details": "Robust and reliable WiFi Shield for rapid prototyping and deployment."
     },
     {
-        "id": "p_70",
-        "name": "Raspberry Pi Pico Breakout",
+        "id": "mod_68",
+        "name": "LCD Display Shield",
         "category": "Modules",
-        "price": "25.53",
-        "image": "module"
+        "price": 1665,
+        "image": "https://images.unsplash.com/photo-1553406830-ef2513450d76?w=500&q=80",
+        "details": "Robust and reliable LCD Display Shield for rapid prototyping and deployment."
     },
     {
-        "id": "p_71",
-        "name": "Stepper Motor",
-        "category": "Actuators",
-        "price": "20.82",
-        "image": "actuator"
+        "id": "mod_69",
+        "name": "Raspberry Pi Pico Module",
+        "category": "Modules",
+        "price": 1183,
+        "image": "https://images.unsplash.com/photo-1553406830-ef2513450d76?w=500&q=80",
+        "details": "Robust and reliable Raspberry Pi Pico Module for rapid prototyping and deployment."
     },
     {
-        "id": "p_72",
-        "name": "LED Strip",
-        "category": "Actuators",
-        "price": "37.06",
-        "image": "actuator"
+        "id": "mod_70",
+        "name": "WiFi Core",
+        "category": "Modules",
+        "price": 1555,
+        "image": "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=500&q=80",
+        "details": "Robust and reliable WiFi Core for rapid prototyping and deployment."
     },
     {
-        "id": "p_73",
-        "name": "LED Strip",
-        "category": "Actuators",
-        "price": "43.53",
-        "image": "actuator"
-    },
-    {
-        "id": "p_74",
-        "name": "Servo Motor",
-        "category": "Actuators",
-        "price": "22.44",
-        "image": "actuator"
-    },
-    {
-        "id": "p_75",
-        "name": "Micro Servo",
-        "category": "Actuators",
-        "price": "12.84",
-        "image": "actuator"
-    },
-    {
-        "id": "p_76",
-        "name": "Brushless Motor",
-        "category": "Actuators",
-        "price": "21.70",
-        "image": "actuator"
-    },
-    {
-        "id": "p_77",
-        "name": "DC Motor",
-        "category": "Actuators",
-        "price": "19.71",
-        "image": "actuator"
-    },
-    {
-        "id": "p_78",
-        "name": "Air Pump",
-        "category": "Actuators",
-        "price": "44.00",
-        "image": "actuator"
-    },
-    {
-        "id": "p_79",
-        "name": "DC Motor",
-        "category": "Actuators",
-        "price": "25.87",
-        "image": "actuator"
-    },
-    {
-        "id": "p_80",
-        "name": "Vibration Motor",
-        "category": "Actuators",
-        "price": "28.46",
-        "image": "actuator"
-    },
-    {
-        "id": "p_81",
+        "id": "act_71",
         "name": "Laser Diode",
         "category": "Actuators",
-        "price": "38.97",
-        "image": "actuator"
+        "price": 2807,
+        "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+        "details": "Heavy duty laser diode capable of consistent mechanical actuation."
     },
     {
-        "id": "p_82",
+        "id": "act_72",
+        "name": "Speaker",
+        "category": "Actuators",
+        "price": 804,
+        "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+        "details": "Heavy duty speaker capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_73",
+        "name": "Cooling Fan",
+        "category": "Actuators",
+        "price": 2314,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty cooling fan capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_74",
+        "name": "Solenoid Valve",
+        "category": "Actuators",
+        "price": 2455,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty solenoid valve capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_75",
         "name": "Micro Servo",
         "category": "Actuators",
-        "price": "11.29",
-        "image": "actuator"
+        "price": 794,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty micro servo capable of consistent mechanical actuation."
     },
     {
-        "id": "p_83",
-        "name": "Piezo Buzzer",
-        "category": "Actuators",
-        "price": "18.18",
-        "image": "actuator"
-    },
-    {
-        "id": "p_84",
-        "name": "Micro Servo",
-        "category": "Actuators",
-        "price": "11.22",
-        "image": "actuator"
-    },
-    {
-        "id": "p_85",
-        "name": "Geared Motor",
-        "category": "Actuators",
-        "price": "19.75",
-        "image": "actuator"
-    },
-    {
-        "id": "p_86",
+        "id": "act_76",
         "name": "Linear Actuator",
         "category": "Actuators",
-        "price": "17.00",
-        "image": "actuator"
+        "price": 2836,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty linear actuator capable of consistent mechanical actuation."
     },
     {
-        "id": "p_87",
-        "name": "Stepper Motor",
+        "id": "act_77",
+        "name": "LED Strip",
         "category": "Actuators",
-        "price": "38.96",
-        "image": "actuator"
+        "price": 662,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty led strip capable of consistent mechanical actuation."
     },
     {
-        "id": "p_88",
-        "name": "DC Motor",
+        "id": "act_78",
+        "name": "Solenoid Valve",
         "category": "Actuators",
-        "price": "42.56",
-        "image": "actuator"
+        "price": 2600,
+        "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+        "details": "Heavy duty solenoid valve capable of consistent mechanical actuation."
     },
     {
-        "id": "p_89",
-        "name": "Pneumatic Cylinder",
+        "id": "act_79",
+        "name": "Speaker",
         "category": "Actuators",
-        "price": "26.16",
-        "image": "actuator"
+        "price": 2638,
+        "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+        "details": "Heavy duty speaker capable of consistent mechanical actuation."
     },
     {
-        "id": "p_90",
+        "id": "act_80",
+        "name": "Water Pump",
+        "category": "Actuators",
+        "price": 2875,
+        "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+        "details": "Heavy duty water pump capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_81",
+        "name": "Speaker",
+        "category": "Actuators",
+        "price": 1679,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty speaker capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_82",
         "name": "Micro Servo",
         "category": "Actuators",
-        "price": "38.27",
-        "image": "actuator"
+        "price": 2796,
+        "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+        "details": "Heavy duty micro servo capable of consistent mechanical actuation."
     },
     {
-        "id": "p_91",
+        "id": "act_83",
+        "name": "Air Pump",
+        "category": "Actuators",
+        "price": 2543,
+        "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+        "details": "Heavy duty air pump capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_84",
+        "name": "Solenoid Valve",
+        "category": "Actuators",
+        "price": 2836,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty solenoid valve capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_85",
+        "name": "Air Pump",
+        "category": "Actuators",
+        "price": 861,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty air pump capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_86",
+        "name": "Heater Pad",
+        "category": "Actuators",
+        "price": 1400,
+        "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+        "details": "Heavy duty heater pad capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_87",
+        "name": "Air Pump",
+        "category": "Actuators",
+        "price": 1615,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty air pump capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_88",
+        "name": "Speaker",
+        "category": "Actuators",
+        "price": 615,
+        "image": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500&q=80",
+        "details": "Heavy duty speaker capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_89",
+        "name": "Pneumatic Cylinder",
+        "category": "Actuators",
+        "price": 1224,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty pneumatic cylinder capable of consistent mechanical actuation."
+    },
+    {
+        "id": "act_90",
+        "name": "Brushless Motor",
+        "category": "Actuators",
+        "price": 1296,
+        "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=500&q=80",
+        "details": "Heavy duty brushless motor capable of consistent mechanical actuation."
+    },
+    {
+        "id": "pro_91",
         "name": "Gesture Controlled Car Kit",
         "category": "Projects",
-        "price": "46.37",
-        "image": "project"
+        "price": 3326,
+        "image": "https://images.unsplash.com/photo-1608306448197-e83633f1261c?w=500&q=80",
+        "details": "Complete Gesture Controlled Car DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_92",
+        "id": "pro_92",
         "name": "Mini Drone Kit",
         "category": "Projects",
-        "price": "120.50",
-        "image": "project"
+        "price": 9025,
+        "image": "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500&q=80",
+        "details": "Complete Mini Drone DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_93",
+        "id": "pro_93",
         "name": "Otto Robot Kit",
         "category": "Projects",
-        "price": "138.11",
-        "image": "project"
+        "price": 3594,
+        "image": "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500&q=80",
+        "details": "Complete Otto Robot DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_94",
+        "id": "pro_94",
         "name": "Smart Home Hub Kit",
         "category": "Projects",
-        "price": "43.52",
-        "image": "project"
+        "price": 3756,
+        "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&q=80",
+        "details": "Complete Smart Home Hub DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_95",
+        "id": "pro_95",
         "name": "Weather Station Kit",
         "category": "Projects",
-        "price": "73.49",
-        "image": "project"
+        "price": 8825,
+        "image": "https://images.unsplash.com/photo-1608306448197-e83633f1261c?w=500&q=80",
+        "details": "Complete Weather Station DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_96",
+        "id": "pro_96",
         "name": "Line Follower Robot Kit",
         "category": "Projects",
-        "price": "137.47",
-        "image": "project"
+        "price": 5641,
+        "image": "https://images.unsplash.com/photo-1608306448197-e83633f1261c?w=500&q=80",
+        "details": "Complete Line Follower Robot DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_97",
+        "id": "pro_97",
         "name": "Obstacle Avoider Kit",
         "category": "Projects",
-        "price": "112.18",
-        "image": "project"
+        "price": 5593,
+        "image": "https://images.unsplash.com/photo-1608306448197-e83633f1261c?w=500&q=80",
+        "details": "Complete Obstacle Avoider DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_98",
+        "id": "pro_98",
         "name": "Bluetooth RC Car Kit",
         "category": "Projects",
-        "price": "81.94",
-        "image": "project"
+        "price": 2346,
+        "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&q=80",
+        "details": "Complete Bluetooth RC Car DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_99",
+        "id": "pro_99",
         "name": "Home Security System Kit",
         "category": "Projects",
-        "price": "95.73",
-        "image": "project"
+        "price": 4504,
+        "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&q=80",
+        "details": "Complete Home Security System DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_100",
+        "id": "pro_100",
         "name": "Smart Dustbin Kit",
         "category": "Projects",
-        "price": "106.45",
-        "image": "project"
+        "price": 2314,
+        "image": "https://images.unsplash.com/photo-1608306448197-e83633f1261c?w=500&q=80",
+        "details": "Complete Smart Dustbin DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_101",
+        "id": "pro_101",
         "name": "Automated Plant Waterer Kit",
         "category": "Projects",
-        "price": "74.04",
-        "image": "project"
+        "price": 3955,
+        "image": "https://images.unsplash.com/photo-1608306448197-e83633f1261c?w=500&q=80",
+        "details": "Complete Automated Plant Waterer DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_102",
+        "id": "pro_102",
         "name": "Biometric Lock Kit",
         "category": "Projects",
-        "price": "78.18",
-        "image": "project"
+        "price": 6258,
+        "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&q=80",
+        "details": "Complete Biometric Lock DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_103",
+        "id": "pro_103",
         "name": "RFID Attendance Kit",
         "category": "Projects",
-        "price": "65.38",
-        "image": "project"
+        "price": 3974,
+        "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&q=80",
+        "details": "Complete RFID Attendance DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_104",
+        "id": "pro_104",
         "name": "Radar System Kit",
         "category": "Projects",
-        "price": "58.15",
-        "image": "project"
+        "price": 5940,
+        "image": "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500&q=80",
+        "details": "Complete Radar System DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_105",
+        "id": "pro_105",
         "name": "Self Balancing Robot Kit",
         "category": "Projects",
-        "price": "82.53",
-        "image": "project"
+        "price": 7518,
+        "image": "https://images.unsplash.com/photo-1608306448197-e83633f1261c?w=500&q=80",
+        "details": "Complete Self Balancing Robot DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_106",
+        "id": "pro_106",
         "name": "Voice Controlled Arm Kit",
         "category": "Projects",
-        "price": "44.96",
-        "image": "project"
+        "price": 2164,
+        "image": "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500&q=80",
+        "details": "Complete Voice Controlled Arm DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_107",
+        "id": "pro_107",
         "name": "Laser Security Kit",
         "category": "Projects",
-        "price": "64.30",
-        "image": "project"
+        "price": 8697,
+        "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&q=80",
+        "details": "Complete Laser Security DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_108",
+        "id": "pro_108",
         "name": "Smart Mirror Kit",
         "category": "Projects",
-        "price": "104.23",
-        "image": "project"
+        "price": 8836,
+        "image": "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=500&q=80",
+        "details": "Complete Smart Mirror DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_109",
+        "id": "pro_109",
         "name": "Health Monitor Kit",
         "category": "Projects",
-        "price": "131.92",
-        "image": "project"
+        "price": 7908,
+        "image": "https://images.unsplash.com/photo-1608306448197-e83633f1261c?w=500&q=80",
+        "details": "Complete Health Monitor DIY kit. Includes all components, chassis, and documentation."
     },
     {
-        "id": "p_110",
+        "id": "pro_110",
         "name": "IoT Vending Machine Kit",
         "category": "Projects",
-        "price": "101.35",
-        "image": "project"
+        "price": 7716,
+        "image": "https://images.unsplash.com/photo-1608306448197-e83633f1261c?w=500&q=80",
+        "details": "Complete IoT Vending Machine DIY kit. Includes all components, chassis, and documentation."
     }
 ];

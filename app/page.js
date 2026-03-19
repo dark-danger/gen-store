@@ -9,10 +9,13 @@ export default function Home() {
     const [cart, setCart] = useState([]);
     const [cartOpen, setCartOpen] = useState(false);
 
+    // Checkout Modal State
+    const [checkoutOpen, setCheckoutOpen] = useState(false);
+    const [checkoutProduct, setCheckoutProduct] = useState(null); // specific product if direct buy
+    const [checkoutForm, setCheckoutForm] = useState({ name: '', address: '', pincode: '', quantity: 1 });
+
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
+        const handleScroll = () => setScrolled(window.scrollY > 50);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -25,16 +28,49 @@ export default function Home() {
         setCart(prev => prev.filter((_, i) => i !== index));
     };
 
-    const cartTotal = cart.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2);
+    const getCartTotal = () => {
+        return cart.reduce((total, item) => total + parseInt(item.price), 0);
+    };
 
+    const openCheckout = (product = null) => {
+        if (product) {
+            setCheckoutProduct(product);
+            setCheckoutForm({ ...checkoutForm, quantity: 1 });
+        } else {
+            setCheckoutProduct(null); // whole cart
+        }
+        setCheckoutOpen(true);
+        setCartOpen(false);
+    };
+
+    const closeCheckout = () => {
+        setCheckoutOpen(false);
+        setCheckoutProduct(null);
+    };
+
+    const handleFormChange = (e) => {
+        setCheckoutForm({ ...checkoutForm, [e.target.name]: e.target.value });
+    };
+
+    // Calculate total for checkout
+    let checkoutTotalAmount = 0;
+    if (checkoutProduct) {
+        checkoutTotalAmount = checkoutProduct.price * Math.max(1, checkoutForm.quantity);
+    } else {
+        checkoutTotalAmount = getCartTotal();
+    }
+
+    // Filter Products
     const filteredProducts = category === 'All' 
-        ? rawProducts.sort(() => Math.random() - 0.5) 
+        ? rawProducts 
         : rawProducts.filter(p => p.category === category);
-
-    // Limit initial display so the DOM doesn't get flooded in this lightweight viewer, or unlimit it since we're natively scrolling.
-    const displayProducts = filteredProducts.slice(0, 48); // Show up to 48 at a time for aesthetic demo
+    const displayProducts = filteredProducts.slice(0, 48);
 
     const categories = ['All', 'Sensors', 'Modules', 'Actuators', 'Projects'];
+
+    // Generate UPI Link
+    const upiLink = `upi://pay?pa=khannayash398-1@okicici&pn=GenBots&am=${checkoutTotalAmount}&cu=INR`;
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}&bgcolor=111111&color=00ff88`;
 
     return (
         <main>
@@ -47,10 +83,16 @@ export default function Home() {
                         <li><a href="#shop" className={category !== 'All' ? 'active' : ''}>Store</a></li>
                         <li><a href="#about">About</a></li>
                     </ul>
-                    <button className="btn-icon" onClick={() => setCartOpen(true)} aria-label="Open cart">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                        {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
-                    </button>
+                    <div className="nav-actions">
+                        <a href="http://thegenbots.in" target="_blank" rel="noopener noreferrer" className="btn-nav-genbots">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            GenBots
+                        </a>
+                        <button className="btn-icon" onClick={() => setCartOpen(true)} aria-label="Open cart">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                            {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
+                        </button>
+                    </div>
                 </div>
             </nav>
 
@@ -70,11 +112,11 @@ export default function Home() {
                         cart.map((item, index) => (
                             <div className="cart-item" key={index}>
                                 <div className="cart-item-img">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                    <img src={item.image} alt={item.name} />
                                 </div>
                                 <div className="cart-item-details">
                                     <div className="cart-item-title">{item.name}</div>
-                                    <div className="cart-item-price">${item.price}</div>
+                                    <div className="cart-item-price">₹{item.price}</div>
                                     <button className="cart-item-remove" onClick={() => removeFromCart(index)}>Remove</button>
                                 </div>
                             </div>
@@ -85,12 +127,102 @@ export default function Home() {
                     <div className="cart-footer">
                         <div className="cart-total">
                             <span>Total:</span>
-                            <span>${cartTotal}</span>
+                            <span>₹{getCartTotal()}</span>
                         </div>
-                        <button className="btn btn-primary btn-block">Checkout</button>
+                        <button className="btn btn-primary btn-block" onClick={() => openCheckout(null)}>Secure Checkout</button>
                     </div>
                 )}
             </div>
+
+            {/* Checkout Modal */}
+            {checkoutOpen && (
+                <div className="checkout-overlay">
+                    <div className="checkout-modal">
+                        <button className="checkout-close" onClick={closeCheckout}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                        
+                        <div className="checkout-content">
+                            {/* Left Side: Order Details */}
+                            <div className="checkout-left">
+                                <h2>Order Summary</h2>
+                                {checkoutProduct ? (
+                                    <div className="checkout-product-preview">
+                                        <img src={checkoutProduct.image} alt={checkoutProduct.name} />
+                                        <div className="checkout-product-info">
+                                            <h3>{checkoutProduct.name}</h3>
+                                            <p>{checkoutProduct.details}</p>
+                                            <div className="ch-price">₹{checkoutProduct.price} / unit</div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="checkout-cart-preview">
+                                        <p>{cart.length} items in cart</p>
+                                        <div className="cart-preview-list">
+                                            {cart.slice(0, 3).map((item, i) => (
+                                                <div className="cp-item" key={i}>
+                                                    <span>{item.name}</span>
+                                                    <span>₹{item.price}</span>
+                                                </div>
+                                            ))}
+                                            {cart.length > 3 && <div className="cp-item">...and {cart.length - 3} more</div>}
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="checkout-form">
+                                    <h3>Delivery Details</h3>
+                                    <div className="form-group">
+                                        <label>Full Name</label>
+                                        <input type="text" name="name" placeholder="Yash Khanna" onChange={handleFormChange} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Full Address</label>
+                                        <textarea name="address" placeholder="123 Hardware Lane, Sector 4..." onChange={handleFormChange}></textarea>
+                                    </div>
+                                    <div className="form-group-row">
+                                        <div className="form-group">
+                                            <label>Pincode</label>
+                                            <input type="text" name="pincode" placeholder="131001" onChange={handleFormChange} />
+                                        </div>
+                                        {checkoutProduct && (
+                                            <div className="form-group">
+                                                <label>Quantity</label>
+                                                <input type="number" name="quantity" min="1" value={checkoutForm.quantity} onChange={handleFormChange} />
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right Side: Payment QR */}
+                            <div className="checkout-right">
+                                <div className="payment-panel">
+                                    <h3>Total Secure Payment</h3>
+                                    <div className="payment-amount">₹{checkoutTotalAmount}</div>
+                                    <div className="qr-container">
+                                        <img src={qrCodeUrl} alt="UPI Payment QR Code" />
+                                    </div>
+                                    <p className="qr-instruction">Scan with any UPI App (GPay, PhonePe, Paytm)</p>
+                                    <div className="upi-id-badge">khannayash398-1@okicici</div>
+                                    <button className="btn btn-primary btn-block" style={{marginTop: '20px'}}>I have paid</button>
+                                </div>
+                                <div className="suggestions">
+                                    <h4>Usually Bought Together</h4>
+                                    <div className="suggestion-item">
+                                        <span>Jumper Wires (40pcs)</span>
+                                        <span>+₹120</span>
+                                    </div>
+                                    <div className="suggestion-item">
+                                        <span>Breadboard Full</span>
+                                        <span>+₹180</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Hero */}
             <header className="hero" id="home">
@@ -124,39 +256,102 @@ export default function Home() {
 
                 <div className="category-tabs">
                     {categories.map(cat => (
-                        <button 
-                            key={cat} 
-                            onClick={() => setCategory(cat)} 
-                            className={`tab-btn ${category === cat ? 'active' : ''}`}
-                        >
+                        <button key={cat} onClick={() => setCategory(cat)} className={`tab-btn ${category === cat ? 'active' : ''}`}>
                             {cat}
                         </button>
                     ))}
                 </div>
 
                 <div className="product-grid">
-                    {displayProducts.map((product, i) => (
-                        <div className="product-card glass-panel" key={`${product.id}-${i}`}>
+                    {displayProducts.map((product) => (
+                        <div className="product-card glass-panel" key={product.id}>
                             <div className="card-image-wrapper">
-                                {product.image === 'sensor' && <svg className="svg-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><path d="M4 8v12h16V8M2 13h20M7 5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3H7Z"></path></svg>}
-                                {product.image === 'module' && <svg className="svg-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="6" cy="12" r="1"></circle><circle cx="10" cy="12" r="1"></circle><circle cx="14" cy="12" r="1"></circle><circle cx="18" cy="12" r="1"></circle></svg>}
-                                {product.image === 'actuator' && <svg className="svg-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><line x1="12" y1="1" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="23"></line></svg>}
-                                {product.image === 'project' && <svg className="svg-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon><line x1="12" y1="22" x2="12" y2="15.5"></line><polyline points="22 8.5 12 15.5 2 8.5"></polyline></svg>}
+                                <img src={product.image} alt={product.name} />
                             </div>
                             <div className="card-content">
                                 <div className="card-tag">{product.category}</div>
                                 <h3>{product.name}</h3>
+                                <p className="card-desc">{product.details}</p>
                                 <div className="card-footer">
-                                    <span className="price">${product.price}</span>
-                                    <button className="btn-icon add-to-cart" onClick={() => addToCart(product)} aria-label="Add to cart">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-6.2-4h6.4a2 2 0 0 0 1.9-1.4l2.4-8.6H5.4M3 4h2l1 5h13m-2.2 7H7.6L6 5H3"/></svg>
-                                    </button>
+                                    <span className="price">₹{product.price}</span>
+                                    <div className="card-actions">
+                                        <button className="btn-icon add-to-cart-icon" onClick={() => addToCart(product)} aria-label="Add to cart">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-6.2-4h6.4a2 2 0 0 0 1.9-1.4l2.4-8.6H5.4M3 4h2l1 5h13m-2.2 7H7.6L6 5H3"/></svg>
+                                        </button>
+                                        <button className="btn-buy-now" onClick={() => openCheckout(product)}>Buy Now</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
             </section>
+
+            {/* Ultimate GenBots Footer */}
+            <footer className="footer-genbots">
+                <div className="footer-gb-content">
+                    <div className="gb-brand">
+                        <div className="gb-logo">
+                            <span className="gb-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="12" cy="12" r="3"></circle><path d="M12 8v8M8 12h8"></path></svg>
+                            </span>
+                            GenBots
+                        </div>
+                        <p>Empowering the next generation with hands-on STEM education through IoT, robotics, and AI-integrated learning experiences.</p>
+                        <div className="gb-social">
+                            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+                            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"></path></svg></a>
+                            <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                        </div>
+                    </div>
+
+                    <div className="gb-links">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Programs</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Why GenBots</a></li>
+                        </ul>
+                    </div>
+
+                    <div className="gb-links">
+                        <h4>Programs</h4>
+                        <ul>
+                            <li><a href="#">IoT & Smart Home</a></li>
+                            <li><a href="#">Robotics</a></li>
+                            <li><a href="#">Drone Engineering</a></li>
+                            <li><a href="#">Python Programming</a></li>
+                            <li><a href="#">AI-IoT Systems</a></li>
+                        </ul>
+                    </div>
+
+                    <div className="gb-contact">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li>
+                                <span className="icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span>
+                                khannayash394@gmail.com
+                            </li>
+                            <li>
+                                <span className="icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>
+                                +91 92110 67540
+                            </li>
+                            <li>
+                                <span className="icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+                                Sonipat, Haryana, India
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="gb-bottom">
+                    <p>© 2026 GenBots. All rights reserved.</p>
+                    <div className="gb-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </footer>
         </main>
     );
 }
