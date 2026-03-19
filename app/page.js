@@ -66,7 +66,7 @@ export default function Home() {
         : rawProducts.filter(p => p.category === category);
     const displayProducts = filteredProducts.slice(0, 48);
 
-    const categories = ['All', 'Sensors', 'Modules', 'Actuators', 'Projects'];
+    const categories = ['All', 'Sensors', 'Modules', 'Actuators', 'Projects', 'Circuits'];
 
     // Generate UPI Link
     const upiLink = `upi://pay?pa=khannayash398-1@okicici&pn=GenBots&am=${checkoutTotalAmount}&cu=INR`;
