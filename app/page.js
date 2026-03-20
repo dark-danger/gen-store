@@ -30,18 +30,8 @@ export default function Home() {
 
     // Redirect to login if not authenticated
     useEffect(() => {
-        if (authLoading) return;
-
-        const checkAuth = async () => {
-            // Give Supabase a moment to pick up the session from localStorage
-            const { data: { session } } = await supabase.auth.getSession();
-            if (!session && !user) {
-                router.replace('/login');
-            }
-        };
-        
-        if (!user) {
-            checkAuth();
+        if (!authLoading && !user) {
+            router.replace('/login');
         }
     }, [authLoading, user, router]);
 

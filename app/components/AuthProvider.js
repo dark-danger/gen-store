@@ -14,13 +14,12 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Get initial session
+        // Get initial session — set loading=false immediately so UI doesn't block
         supabase.auth.getSession().then(({ data: { session } }) => {
             setUser(session?.user ?? null);
+            setLoading(false); // Unblock UI immediately
             if (session?.user) {
-                fetchProfile(session.user.id, session.user.email);
-            } else {
-                setLoading(false);
+                fetchProfile(session.user.id, session.user.email); // Load profile in background
             }
         });
 
@@ -29,11 +28,10 @@ export function AuthProvider({ children }) {
             async (_event, session) => {
                 setUser(session?.user ?? null);
                 if (session?.user) {
-                    await fetchProfile(session.user.id, session.user.email);
+                    fetchProfile(session.user.id, session.user.email);
                 } else {
                     setProfile(null);
                     setIsAdmin(false);
-                    setLoading(false);
                 }
             }
         );
@@ -68,8 +66,6 @@ export function AuthProvider({ children }) {
             }
         } catch (err) {
             console.error('Error fetching profile:', err);
-        } finally {
-            setLoading(false);
         }
     };
 
