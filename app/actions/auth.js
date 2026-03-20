@@ -15,7 +15,7 @@ export async function signInAction(email, password) {
         });
         
         if (error) throw error;
-        return { data, success: true };
+        return { session: data.session, user: data.user, success: true };
     } catch (error) {
         return { error: error.message, success: false };
     }
@@ -32,7 +32,7 @@ export async function signUpAction(email, password, fullName) {
         });
         
         if (error) throw error;
-        return { data, success: true };
+        return { session: data.session, user: data.user, success: true };
     } catch (error) {
         return { error: error.message, success: false };
     }

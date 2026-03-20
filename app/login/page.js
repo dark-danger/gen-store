@@ -3,9 +3,12 @@
 import { useState } from 'react';
 import { useAuth } from '../components/AuthProvider';
 import { signInAction } from '../actions/auth';
+import { supabase } from '../lib/supabase';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function LoginPage() {
+    const router = useRouter();
     const { signIn } = useAuth(); // Keep for session sync if needed, but we'll use action
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,12 +25,19 @@ export default function LoginPage() {
             if (!result.success) {
                 throw new Error(result.error);
             }
+
+            // Important: Set the session locally so the client stays logged in
+            if (result.session) {
+                const { error: sessionError } = await supabase.auth.setSession(result.session);
+                if (sessionError) throw sessionError;
+            }
             
             setSuccess(true);
-            // Redirect after successful login
+            // Redirect after successful login using Next.js router
             setTimeout(() => {
-                window.location.href = '/';
-            }, 1000);
+                router.push('/');
+                router.refresh(); // Refresh to ensure all components see the new auth state
+            }, 500); 
         } catch (err) {
             setError(err.message || 'Login failed. Check your credentials.');
         } finally {

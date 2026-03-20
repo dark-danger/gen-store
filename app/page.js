@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react';
 import { products as rawProducts } from '../data.js';
 import { supabase } from './lib/supabase';
 import { useAuth } from './components/AuthProvider';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Home() {
+    const router = useRouter();
     const { user, profile, signOut, isAdmin, loading: authLoading } = useAuth();
     const [scrolled, setScrolled] = useState(false);
     const [category, setCategory] = useState('All');
@@ -28,10 +30,20 @@ export default function Home() {
 
     // Redirect to login if not authenticated
     useEffect(() => {
-        if (!authLoading && !user) {
-            window.location.href = '/login';
+        if (authLoading) return;
+
+        const checkAuth = async () => {
+            // Give Supabase a moment to pick up the session from localStorage
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session && !user) {
+                router.replace('/login');
+            }
+        };
+        
+        if (!user) {
+            checkAuth();
         }
-    }, [authLoading, user]);
+    }, [authLoading, user, router]);
 
     // Fetch from Supabase (fallback to local data)
     useEffect(() => {
