@@ -1,5 +1,5 @@
-import localFont from "next/font/local";
 import "./globals.css";
+import { AuthProvider } from './components/AuthProvider';
 
 export const metadata = {
   title: "GenStore | Advance Your Hardware",
@@ -16,7 +16,9 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <div id="noise-overlay"></div>
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

@@ -2,16 +2,22 @@
 
 import { useState, useEffect } from 'react';
 import { products as rawProducts } from '../data.js';
+import { supabase } from './lib/supabase';
+import { useAuth } from './components/AuthProvider';
+import Link from 'next/link';
 
 export default function Home() {
+    const { user, profile, signOut, isAdmin, loading: authLoading } = useAuth();
     const [scrolled, setScrolled] = useState(false);
     const [category, setCategory] = useState('All');
     const [cart, setCart] = useState([]);
     const [cartOpen, setCartOpen] = useState(false);
+    const [products, setProducts] = useState(rawProducts);
+    const [userMenuOpen, setUserMenuOpen] = useState(false);
 
     // Checkout Modal State
     const [checkoutOpen, setCheckoutOpen] = useState(false);
-    const [checkoutProduct, setCheckoutProduct] = useState(null); // specific product if direct buy
+    const [checkoutProduct, setCheckoutProduct] = useState(null);
     const [checkoutForm, setCheckoutForm] = useState({ name: '', address: '', pincode: '', quantity: 1 });
 
     useEffect(() => {
@@ -19,6 +25,48 @@ export default function Home() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Redirect to login if not authenticated
+    useEffect(() => {
+        if (!authLoading && !user) {
+            window.location.href = '/login';
+        }
+    }, [authLoading, user]);
+
+    // Fetch from Supabase (fallback to local data)
+    useEffect(() => {
+        async function fetchProducts() {
+            const { data, error } = await supabase
+                .from('products')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (!error && data && data.length > 0) {
+                setProducts(data);
+            }
+        }
+        fetchProducts();
+    }, []);
+
+    // Show loading while checking auth
+    if (authLoading) {
+        return (
+            <div className="auth-loading-screen">
+                <div className="auth-loading-spinner-lg"></div>
+                <p>Loading GenStore...</p>
+            </div>
+        );
+    }
+
+    // Don't render anything if not logged in (will redirect)
+    if (!user) {
+        return (
+            <div className="auth-loading-screen">
+                <div className="auth-loading-spinner-lg"></div>
+                <p>Redirecting to login...</p>
+            </div>
+        );
+    }
 
     const addToCart = (product) => {
         setCart(prev => [...prev, product]);
@@ -37,7 +85,7 @@ export default function Home() {
             setCheckoutProduct(product);
             setCheckoutForm({ ...checkoutForm, quantity: 1 });
         } else {
-            setCheckoutProduct(null); // whole cart
+            setCheckoutProduct(null);
         }
         setCheckoutOpen(true);
         setCartOpen(false);
@@ -52,7 +100,6 @@ export default function Home() {
         setCheckoutForm({ ...checkoutForm, [e.target.name]: e.target.value });
     };
 
-    // Calculate total for checkout
     let checkoutTotalAmount = 0;
     if (checkoutProduct) {
         checkoutTotalAmount = checkoutProduct.price * Math.max(1, checkoutForm.quantity);
@@ -60,15 +107,13 @@ export default function Home() {
         checkoutTotalAmount = getCartTotal();
     }
 
-    // Filter Products
     const filteredProducts = category === 'All' 
-        ? rawProducts 
-        : rawProducts.filter(p => p.category === category);
+        ? products 
+        : products.filter(p => p.category === category);
     const displayProducts = filteredProducts.slice(0, 48);
 
     const categories = ['All', 'Sensors', 'Modules', 'Actuators', 'Projects', 'Circuits'];
 
-    // Generate UPI Link
     const upiLink = `upi://pay?pa=khannayash398-1@okicici&pn=GenBots&am=${checkoutTotalAmount}&cu=INR`;
     const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}&bgcolor=111111&color=00ff88`;
 
@@ -94,6 +139,36 @@ export default function Home() {
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                             {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
                         </button>
+
+                        {/* User Menu */}
+                        <div className="user-menu-wrapper">
+                            <button className="user-avatar-btn" onClick={() => setUserMenuOpen(!userMenuOpen)}>
+                                <div className="user-avatar-circle">
+                                    {profile?.full_name?.[0] || user.email?.[0] || 'U'}
+                                </div>
+                            </button>
+                            {userMenuOpen && (
+                                <>
+                                    <div className="user-menu-backdrop" onClick={() => setUserMenuOpen(false)}></div>
+                                    <div className="user-dropdown">
+                                        <div className="user-dropdown-header">
+                                            <div className="user-dropdown-name">{profile?.full_name || 'User'}</div>
+                                            <div className="user-dropdown-email">{user.email}</div>
+                                        </div>
+                                        {isAdmin && (
+                                            <Link href="/admin" className="user-dropdown-item admin-link" onClick={() => setUserMenuOpen(false)}>
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                                                Admin Dashboard
+                                            </Link>
+                                        )}
+                                        <button className="user-dropdown-item logout-item" onClick={() => { signOut(); setUserMenuOpen(false); }}>
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                                            Sign Out
+                                        </button>
+                                    </div>
+                                </>
+                            )}
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -145,7 +220,6 @@ export default function Home() {
                         </button>
                         
                         <div className="checkout-content">
-                            {/* Left Side: Order Details */}
                             <div className="checkout-left">
                                 <h2>Order Summary</h2>
                                 {checkoutProduct ? (
@@ -197,7 +271,6 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            {/* Right Side: Payment QR */}
                             <div className="checkout-right">
                                 <div className="payment-panel">
                                     <h3>Total Secure Payment</h3>
@@ -289,7 +362,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Ultimate GenBots Footer */}
+            {/* Footer */}
             <footer className="footer-genbots">
                 <div className="footer-gb-content">
                     <div className="gb-brand">
@@ -306,7 +379,6 @@ export default function Home() {
                             <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
                         </div>
                     </div>
-
                     <div className="gb-links">
                         <h4>Company</h4>
                         <ul>
@@ -316,18 +388,16 @@ export default function Home() {
                             <li><a href="#">Why GenBots</a></li>
                         </ul>
                     </div>
-
                     <div className="gb-links">
                         <h4>Programs</h4>
                         <ul>
-                            <li><a href="#">IoT & Smart Home</a></li>
+                            <li><a href="#">IoT &amp; Smart Home</a></li>
                             <li><a href="#">Robotics</a></li>
                             <li><a href="#">Drone Engineering</a></li>
                             <li><a href="#">Python Programming</a></li>
                             <li><a href="#">AI-IoT Systems</a></li>
                         </ul>
                     </div>
-
                     <div className="gb-contact">
                         <h4>Contact</h4>
                         <ul>
