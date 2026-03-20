@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAuth } from '../components/AuthProvider';
+import { signUpAction } from '../actions/auth';
 import Link from 'next/link';
 
 export default function SignupPage() {
@@ -29,7 +30,10 @@ export default function SignupPage() {
 
         setLoading(true);
         try {
-            await signUp(email.trim(), password, fullName.trim());
+            const result = await signUpAction(email.trim(), password, fullName.trim());
+            if (!result.success) {
+                throw new Error(result.error);
+            }
             setSuccess(true);
         } catch (err) {
             setError(err.message || 'Signup failed. Try a different email.');

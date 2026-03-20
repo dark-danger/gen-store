@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { useAuth } from '../components/AuthProvider';
+import { signInAction } from '../actions/auth';
 import Link from 'next/link';
 
 export default function LoginPage() {
-    const { signIn } = useAuth();
+    const { signIn } = useAuth(); // Keep for session sync if needed, but we'll use action
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -17,7 +18,11 @@ export default function LoginPage() {
         setError('');
         setLoading(true);
         try {
-            await signIn(email.trim(), password);
+            const result = await signInAction(email.trim(), password);
+            if (!result.success) {
+                throw new Error(result.error);
+            }
+            
             setSuccess(true);
             // Redirect after successful login
             setTimeout(() => {
