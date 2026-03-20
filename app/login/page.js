@@ -17,7 +17,7 @@ export default function LoginPage() {
         setError('');
         setLoading(true);
         try {
-            await signIn(email, password);
+            await signIn(email.trim(), password);
             setSuccess(true);
             // Redirect after successful login
             setTimeout(() => {

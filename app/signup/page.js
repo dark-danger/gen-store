@@ -29,7 +29,7 @@ export default function SignupPage() {
 
         setLoading(true);
         try {
-            await signUp(email, password, fullName);
+            await signUp(email.trim(), password, fullName.trim());
             setSuccess(true);
         } catch (err) {
             setError(err.message || 'Signup failed. Try a different email.');
