@@ -1,20 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-const sanitizeHeaderValue = (val) => {
-  if (typeof val !== 'string') return '';
-  // Remove any characters that are not ISO-8859-1 (0-255)
-  // This prevents the "String contains non ISO-8859-1 code point" fetch error
-  return val.split('').filter(char => char.charCodeAt(0) <= 255).join('').trim();
-};
+// Use direct constants for reliability if the environment loading is failing
+const SUPABASE_URL = 'https://ddpyqiuphhuecnhmfsjn.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkcHlxaXVwaGh1ZWNuaG1mc2puIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5OTcyNzEsImV4cCI6MjA4OTU3MzI3MX0.6mqISaD-_bTVE7fhEa3IPENJjSp1SnopjleoXu2Tt1s';
 
-const supabaseUrl = sanitizeHeaderValue(process.env.NEXT_PUBLIC_SUPABASE_URL);
-const supabaseAnonKey = sanitizeHeaderValue(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Supabase credentials missing. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local');
-}
-
-export const supabase = createClient(
-  supabaseUrl || '',
-  supabaseAnonKey || ''
-);
+export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
